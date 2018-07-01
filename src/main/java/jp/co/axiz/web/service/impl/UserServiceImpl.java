@@ -9,7 +9,6 @@ import jp.co.axiz.web.dao.UserDao;
 import jp.co.axiz.web.entitiy.User;
 import jp.co.axiz.web.service.UserService;
 
-
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -18,7 +17,7 @@ public class UserServiceImpl implements UserService {
 
 	public List<User> findAll() {
 
-		return userDao.findAll();
+		return userDao.findAll2();
 }
 
 //	@Autowired

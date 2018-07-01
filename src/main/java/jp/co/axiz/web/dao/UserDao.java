@@ -6,6 +6,6 @@ import jp.co.axiz.web.entitiy.User;
 
 
 public interface UserDao {
-		public List<User> findAll();
+		public List<User> findAll2();
 
 }

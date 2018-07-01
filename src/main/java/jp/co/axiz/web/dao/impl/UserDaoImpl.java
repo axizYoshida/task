@@ -14,8 +14,14 @@ public class UserDaoImpl {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	public List<User> findAll() {
-		return jdbcTemplate.query(
-				"SELECT user_id, user_name, telephone FROM user_info", new BeanPropertyRowMapper<User>(User.class));
+//	public List<User> findAll2() {
+//		return jdbcTemplate.query(
+//				"SELECT user_id, user_name, telephone FROM user_info", new BeanPropertyRowMapper<User>(User.class));
+//	}
+	public List<User> findAll2() {
+		List<User> list = jdbcTemplate.query(
+				"SELECT user_id, user_name, telephone FROM user_info ORDER BY user_id",
+				new BeanPropertyRowMapper<User>(User.class));
+		return list;
 	}
 }

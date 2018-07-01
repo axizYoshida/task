@@ -16,16 +16,16 @@
       <th>user_name</th>
       <th>telephone</th>
     </tr>
-    <c:forEach var="user" items="${userList}">
-      <tr>
-        <td>${fn:escapeXml(user.userId)}</td>
-        <td>${fn:escapeXml(user.userName)}</td>
-        <td>${fn:escapeXml(user.telePhone)}</td>
-      </tr>
-    </c:forEach>
+   <c:forEach items="${list}" var="l">
+			<tr>
+				<td>${l.user_id}</td>
+				<td>${l.user_name}</td>
+				<td>${l.telephone}</td>
+			</tr>
+	</c:forEach>
   </table>
    <div>
-  <a href="menu.jsp">メニューに戻る</a>
+  <a href="menu">メニューに戻る</a>
 	</div>
 </body>
 </html>

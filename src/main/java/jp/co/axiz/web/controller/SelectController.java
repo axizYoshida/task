@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.axiz.web.entitiy.User;
@@ -24,7 +23,7 @@ public class SelectController {
 	HttpSession session ;
 
 	@GetMapping("/select")
-	public String loginGet(Model model) {
+	public String select(Model model) {
 		return "select";
 	}
 
@@ -42,27 +41,36 @@ public class SelectController {
 //
 //		return "select";
 //	}
-	@RequestMapping(value = "/list")
-	public String list(@ModelAttribute("Form") Form form,
-			Model model) {
+	@RequestMapping("/list")
+	public String list(@ModelAttribute("Form") Form form, Model model) {
+		String userId = form.getUserId();
+		String userName = form.getUserName();
+		String tel = form.getTel();
 
-//		if (bindingResult.hasErrors()) {
-//			model.addAttribute("errmsg", errorMsg);
-//			return "select";
-//		}
-
-		User condition = new User();
-		condition.setUserId(form.getUserId());
-		condition.setUserName(form.getName());
-		condition.setTelephone(form.getTel());
-
-		List<User> resultList = userservice.findAll(condition);
-
-		if(resultList.isEmpty()) {
-			model.addAttribute("errmsg", errorMsg);
-			return "select";
-		}else {
-			model.addAttribute("userlist", resultList);
+		if ((userId == null && userName == null && tel == null)
+				|| (("".equals(userId)) && ("".equals(userName)) && ("".equals(tel)))) {
+			List<User> list = userservice.findAll();
+			model.addAttribute("list", list);
 			return "selectResult";
+
+			// id無 name無 tel有
+		} else {
+			return "select";
 		}
+
+//		User condition = new User();
+//		condition.setUserId(form.getUserId());
+//		condition.setUserName(form.getName());
+//		condition.setTelephone(form.getTel());
+//
+//		List<User> resultList = userservice.findAll();
+//
+//		if(resultList.isEmpty()) {
+////			model.addAttribute("errmsg", errorMsg);
+//			return "select";
+//		}else {
+//			model.addAttribute("userlist", resultList);
+//			return "selectResult";
+//		}
+	}
 }
