@@ -7,10 +7,11 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import jp.co.axiz.web.dao.UserDao;
 import jp.co.axiz.web.entitiy.User;
 
 @Repository
-public class UserDaoImpl {
+public class UserDaoImpl implements UserDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
